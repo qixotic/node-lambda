@@ -73,6 +73,13 @@ describe('node-lambda', function () {
       var params = lambda._params(program);
       assert.equal(Object.keys(params.VpcConfig).length, 0);
     });
+
+    it('Sets Publish as a boolean when param is set', function() {
+      program.publish = 'true';
+      var params = lambda._params(program);
+      assert.isBoolean(params.Publish);
+      assert.isTrue(params.Publish);
+    });
   });
 
   describe('_zipfileTmpPath', function () {
